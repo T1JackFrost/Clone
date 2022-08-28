@@ -1,0 +1,13 @@
+.item-img {
+    width: 100%;
+    object-fit: cover;
+}
+.desc {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
+
+    font-size: 14px;
+    opacity: 0.6;
+}

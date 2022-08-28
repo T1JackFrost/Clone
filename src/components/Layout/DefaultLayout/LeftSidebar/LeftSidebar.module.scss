@@ -1,0 +1,16 @@
+.wrapper {
+    width: var(--width-left-sidebar);
+}
+
+.logo {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 60px;
+}
+
+.logo-img {
+    width: 120px;
+    display: block;
+}

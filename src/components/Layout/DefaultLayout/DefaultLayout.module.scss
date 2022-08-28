@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    color: var(--search-text);
+    position: relative;
+    overflow-x: hidden;
+}
+
+.left-content {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background-color: #231b2e;
+    width: var(--width-left-sidebar);
+}
+
+.content {
+    padding: var(--content-padding);
+    margin-top: var(--header-height);
+    margin-left: var(--width-left-sidebar);
+    background-color: var(--layout);
+    overflow: hidden;
+}
+
+.page {
+    background-color: transparent;
+}

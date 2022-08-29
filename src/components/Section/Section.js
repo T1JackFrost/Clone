@@ -10,7 +10,7 @@ function Section({ title, data, children, flex }) {
     return (
         <div className={cx('wrapper') + ' grid'}>
             <div className={cx('header')}>
-                <h3 className={cx('title')}>{title}</h3>
+                <h3 className={cx('title')}>{title || 'Playlist/Album'}</h3>
             </div>
             <div className={cx('list', flex && 'flex') + ' row'}>{children}</div>
         </div>

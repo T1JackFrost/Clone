@@ -17,6 +17,8 @@ function Home() {
         return <h1>Loading</h1>;
     }
 
+    console.log(result);
+
     return (
         <div>
             <Carousel data={result[0]} />

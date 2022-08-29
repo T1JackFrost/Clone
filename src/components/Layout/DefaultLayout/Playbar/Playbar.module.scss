@@ -1,0 +1,30 @@
+.wrapper {
+    height: var(--playbar-height);
+    padding: var(--playbar-padding);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    border-top: 1px solid #ddd;
+    background-color: var(--playbar-bg);
+    display: flex;
+    align-items: center;
+}
+
+.player-info {
+    display: flex;
+    flex: 1 1;
+}
+
+.player-control {
+    display: flex;
+    flex: 1 1;
+    align-items: center;
+}
+
+.player-option {
+    display: flex;
+    flex: 1 1;
+    justify-content: right;
+}

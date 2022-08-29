@@ -1,5 +1,7 @@
 import Header from './Header/Header';
 import LeftSidebar from './LeftSidebar/LeftSidebar';
+import Playbar from './Playbar';
+
 import styles from './DefaultLayout.module.scss';
 import classNames from 'classnames/bind';
 
@@ -17,6 +19,7 @@ function DefaultLayout({ children }) {
                     <div className={cx('page')}>{children}</div>
                 </div>
             </div>
+            <Playbar />
         </div>
     );
 }

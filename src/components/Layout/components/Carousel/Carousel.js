@@ -28,7 +28,7 @@ function Carousel({ data }) {
         <div className={cx('wrapper')}>
             <Slider {...settings} className={cx('carousel-list')}>
                 {sliderItems.map((sliderItem) =>
-                    sliderItem.type === 1 || sliderItem.type === 4 ? (
+                    sliderItem.type === 1 || sliderItem.type === 4 || sliderItem.type === 8 ? (
                         <CarouselItem key={sliderItem.encodeId} data={sliderItem} className={cx('carousel-item')} />
                     ) : (
                         ''

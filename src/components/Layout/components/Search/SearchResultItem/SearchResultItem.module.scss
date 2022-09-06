@@ -1,0 +1,31 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+
+    &:hover {
+        background-color: var(--alpha-background);
+    }
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.info {
+    flex: 1;
+    margin-left: 10px;
+}
+
+.song-name {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.artist-name {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}

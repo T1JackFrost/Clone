@@ -1,0 +1,38 @@
+.wrapper {
+    font-size: 24px;
+    color: var(--text-color);
+    display: inline-block;
+    // margin: 0 12px;
+    text-align: center;
+    cursor: pointer;
+
+    + .wrapper {
+        margin: 0 12px;
+    }
+}
+
+// type button
+
+.primary {
+    font-size: 16psx;
+    border: 1px solid var(--playbar-bg);
+    border-radius: 50%;
+    background-color: var(--playbar-bg);
+
+    &:hover {
+        filter: brightness(0.9);
+    }
+}
+
+.circle {
+    min-height: 29px;
+    min-width: 29px;
+
+    border-radius: 50%;
+    background-color: var(--playbar-bg);
+
+    &:hover {
+        filter: brightness(0.9);
+        background-color: var(--alpha-background);
+    }
+}

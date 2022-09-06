@@ -2,9 +2,19 @@
     --search-border-radius: 20px;
 }
 
-.search {
-    height: 40px;
+.search,
+.search-result {
     width: 540px;
+}
+
+.search-title {
+    font-size: 1.8rem;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+.search {
+    height: var(--search-height);
     display: flex;
     color: var(--search-text);
     background-color: var(--layout);

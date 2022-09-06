@@ -6,13 +6,13 @@ import styles from './Section.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Section({ title, data, children, flex }) {
+function Section({ title, children }) {
     return (
         <div className={cx('wrapper') + ' grid'}>
             <div className={cx('header')}>
                 <h3 className={cx('title')}>{title || 'Playlist/Album'}</h3>
             </div>
-            <div className={cx('list', flex && 'flex') + ' row'}>{children}</div>
+            <div className={cx('list') + ' row'}>{children}</div>
         </div>
     );
 }

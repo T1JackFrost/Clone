@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+
 import Carousel from '~/components/Layout/components/Carousel';
 import request from '~/ultis/request';
 import Section from '~/components/Section';
 import Item from '~/components/Item';
+import Loading from '~/components/Layout/components/Loading';
 
 function Home() {
     const [result, setResult] = useState([]);
@@ -14,10 +16,8 @@ function Home() {
     }, []);
 
     if (result.length === 0) {
-        return <h1>Loading</h1>;
+        return <Loading />;
     }
-
-    console.log(result);
 
     return (
         <div>

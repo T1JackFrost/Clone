@@ -2,7 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes/Routes';
 import { DefaultLayout } from '~/components/Layout';
 
+import { useStore } from './store';
+
 function App() {
+    const [state, dispatch] = useStore();
+
     return (
         <Router>
             <div className="App">

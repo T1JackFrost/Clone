@@ -6,8 +6,13 @@ import Section from '~/components/Section';
 import Item from '~/components/Item';
 import Loading from '~/components/Layout/components/Loading';
 
+import { useStore } from '~/store';
+
 function Home() {
     const [result, setResult] = useState([]);
+
+    const [state, dispatch] = useStore();
+    // console.log(state);
 
     useEffect(() => {
         request.get('/home').then((res) => {

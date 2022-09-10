@@ -4,9 +4,10 @@ import styles from './SearchResultItem.module.scss';
 
 const cx = classNames.bind(styles);
 
-function SearchResultItem({ data }) {
+function SearchResultItem({ data, onClick }) {
+    // console.log(data);
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} onClick={onClick}>
             <img className={cx('avatar')} src={data.thumbnailM || data.thumbnail} alt={data.thumbnail} />
             <div className={cx('info')}>
                 <h4 className={cx('song-name')}>{data.title}</h4>

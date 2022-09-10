@@ -11,6 +11,8 @@ import SearchResultItem from './SearchResultItem';
 import request from '~/ultis/request';
 import { useDebounce } from '~/hooks';
 
+import { useStore, actions } from '~/store';
+
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -19,8 +21,10 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
 
     const debounced = useDebounce(searchValue, 500);
-
     const inputRef = useRef();
+
+    const [state, dispatch] = useStore();
+    const { title, artistNames, duration, songId, thumbnailM, srcAudio } = state;
 
     useEffect(() => {
         if (!debounced.trim()) {
@@ -31,6 +35,17 @@ function Search() {
             setSearchResult(res.data.songs);
         });
     }, [debounced]);
+
+    useEffect(() => {
+        if (!songId) {
+            return;
+        }
+
+        request.get(`/song?id=${songId}`).then((res) => {
+            dispatch(actions.setSrcAudio(res.data['128']));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [songId]);
 
     const handleHideResult = () => {
         setShowResult(false);
@@ -46,7 +61,25 @@ function Search() {
                         <SearchResult>
                             <h4>Gợi ý kết quả</h4>
                             {searchResult.map((result) => (
-                                <SearchResultItem key={result.encodeId} data={result} />
+                                <SearchResultItem
+                                    key={result.encodeId}
+                                    data={result}
+                                    onClick={() => {
+                                        dispatch(
+                                            actions.setSongInfo({
+                                                title: result.title,
+                                                artistsNames: result.artistsNames,
+                                                thumbnailM: result.thumbnailM,
+                                            }),
+                                        );
+                                        dispatch(
+                                            actions.setSongSelect({
+                                                songId: result.encodeId,
+                                                duration: result.duration,
+                                            }),
+                                        );
+                                    }}
+                                />
                             ))}
                         </SearchResult>
                     </div>

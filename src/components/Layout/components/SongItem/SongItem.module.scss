@@ -1,0 +1,23 @@
+.song-item {
+    display: flex;
+    padding: 8px;
+    background-color: var(--primary);
+    border-radius: 8px;
+    margin: 4px;
+}
+
+.img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.artist {
+    font-size: 1.2rem;
+}

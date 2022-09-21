@@ -1,7 +1,3 @@
-.wrapper {
-    width: var(--width-left-sidebar);
-}
-
 .logo {
     height: var(--header-height);
     display: flex;
@@ -12,5 +8,4 @@
 
 .logo-img {
     width: 120px;
-    display: block;
 }

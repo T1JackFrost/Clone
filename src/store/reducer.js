@@ -1,4 +1,12 @@
-import { SET_SRC_AUDIO, SET_SONG_INFO, SET_SONG_SELECT, SET_PLAY_SONG } from './constants';
+import {
+    SET_SRC_AUDIO,
+    SET_SONG_INFO,
+    SET_SONG_SELECT,
+    SET_PLAY_SONG,
+    SET_VOLUME,
+    SET_LOOP,
+    SET_ALBUM,
+} from './constants';
 
 const initState = {
     isPlay: false,
@@ -11,16 +19,15 @@ const initState = {
     artistsNames: '',
     thumbnailM: '',
     srcAudio: '',
-    currentTime: 0,
     duration: 0,
-    volume: 0,
+    volume: 20,
     isLoop: false,
     isRandom: false,
     autoPlay: false,
+    album: {},
 };
 
 function reducer(state, action) {
-    console.log(action.payload);
     switch (action.type) {
         case SET_SRC_AUDIO:
             return {
@@ -44,6 +51,21 @@ function reducer(state, action) {
             return {
                 ...state,
                 isPlay: action.payload,
+            };
+        case SET_VOLUME:
+            return {
+                ...state,
+                volume: action.payload,
+            };
+        case SET_LOOP:
+            return {
+                ...state,
+                isLoop: action.payload,
+            };
+        case SET_ALBUM:
+            return {
+                ...state,
+                album: action.payload,
             };
         default:
             throw new Error('Invalid action');

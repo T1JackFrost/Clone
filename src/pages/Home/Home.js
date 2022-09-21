@@ -3,16 +3,11 @@ import { useState, useEffect } from 'react';
 import Carousel from '~/components/Layout/components/Carousel';
 import request from '~/ultis/request';
 import Section from '~/components/Section';
-import Item from '~/components/Item';
+import SectionItem from '~/components/SectionItem';
 import Loading from '~/components/Layout/components/Loading';
-
-import { useStore } from '~/store';
 
 function Home() {
     const [result, setResult] = useState([]);
-
-    const [state, dispatch] = useStore();
-    // console.log(state);
 
     useEffect(() => {
         request.get('/home').then((res) => {
@@ -33,7 +28,7 @@ function Home() {
                         playlist.sectionType === 'playlist' && (
                             <Section key={index} title={playlist.title}>
                                 {playlist.items.map((item) => (
-                                    <Item key={item.encodeId} data={item} />
+                                    <SectionItem key={item.encodeId} data={item} />
                                 ))}
                             </Section>
                         ),

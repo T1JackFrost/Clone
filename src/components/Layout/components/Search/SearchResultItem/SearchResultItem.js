@@ -5,7 +5,6 @@ import styles from './SearchResultItem.module.scss';
 const cx = classNames.bind(styles);
 
 function SearchResultItem({ data, onClick }) {
-    // console.log(data);
     return (
         <div className={cx('wrapper')} onClick={onClick}>
             <img className={cx('avatar')} src={data.thumbnailM || data.thumbnail} alt={data.thumbnail} />

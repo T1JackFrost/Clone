@@ -6,7 +6,7 @@
     right: 0;
     bottom: 0;
     z-index: 50;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid var(--alpha-background);
     background-color: var(--playbar-bg);
     display: flex;
     align-items: center;
@@ -21,6 +21,7 @@
     object-fit: cover;
     width: 64px;
     margin-right: 12px;
+    border-radius: 4px;
 }
 
 .name {
@@ -50,14 +51,28 @@
     align-items: center;
 }
 
+.handler {
+    margin-bottom: 8px;
+}
+
 .song-range {
     width: 500px;
+    display: flex;
+    flex: 1;
+    align-items: center;
 
     input[type='range'] {
         height: 4px;
         width: 100%;
         cursor: pointer;
     }
+}
+
+.time {
+    min-width: 60px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--text-color);
 }
 
 .player-option {
@@ -72,8 +87,7 @@
 }
 
 .volume-range {
-    display: flex;
-    margin: auto;
+    margin-left: 4px;
 
     input[type='range'] {
         height: 4px;
@@ -83,4 +97,8 @@
 
 .play-btn {
     font-size: 28px;
+}
+
+.loop-btn-active {
+    color: var(--primary);
 }

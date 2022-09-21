@@ -24,7 +24,6 @@ function Search() {
     const inputRef = useRef();
 
     const [state, dispatch] = useStore();
-    const { title, artistNames, duration, songId, thumbnailM, srcAudio } = state;
 
     useEffect(() => {
         if (!debounced.trim()) {
@@ -35,17 +34,6 @@ function Search() {
             setSearchResult(res.data.songs);
         });
     }, [debounced]);
-
-    useEffect(() => {
-        if (!songId) {
-            return;
-        }
-
-        request.get(`/song?id=${songId}`).then((res) => {
-            dispatch(actions.setSrcAudio(res.data['128']));
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [songId]);
 
     const handleHideResult = () => {
         setShowResult(false);
@@ -99,6 +87,7 @@ function Search() {
                                 setSearchValue('');
                                 setSearchResult([]);
                                 inputRef.current.focus();
+                                setShowResult(true);
                             }}
                             className={cx('clear')}
                         >

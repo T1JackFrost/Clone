@@ -1,5 +1,4 @@
 .container {
-    // display: flex;
     color: var(--search-text);
     position: relative;
     overflow-x: hidden;
@@ -18,11 +17,25 @@
     padding: var(--content-padding);
     margin-top: var(--header-height);
     margin-left: var(--width-left-sidebar);
+    margin-right: var(--width-right-sidebar);
     background-color: var(--layout);
     overflow: hidden;
+}
+
+.right-content {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    background-color: var(--layout);
+    width: var(--width-right-sidebar);
+    border-left: 1px solid var(--alpha-background);
+    margin-bottom: 100px;
 }
 
 .page {
     background-color: transparent;
     margin-bottom: 100px;
+    max-height: 610px;
+    overflow-y: scroll;
 }

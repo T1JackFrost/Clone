@@ -19,7 +19,18 @@
     margin-left: var(--width-left-sidebar);
     margin-right: var(--width-right-sidebar);
     background-color: var(--layout);
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(100vh - var(--header-height) - var(--playbar-height));
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--playbar-bg);
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--scroll-thumb-bg);
+    }
 }
 
 .right-content {
@@ -36,6 +47,4 @@
 .page {
     background-color: transparent;
     margin-bottom: 100px;
-    max-height: 610px;
-    overflow-y: scroll;
 }

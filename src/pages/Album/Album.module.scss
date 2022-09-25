@@ -1,5 +1,29 @@
 .wrapper {
-    max-height: 610px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cd-img {
+    height: 300px;
+}
+
+.cd-title {
+    font-size: 2rem;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.time-update,
+.artist,
+.like {
+    font-size: 1.4rem;
+    opacity: 0.6;
+    text-align: center;
+}
+
+.song-list {
+    width: 500px;
+    height: 535px;
     overflow-y: scroll;
     &::-webkit-scrollbar {
         width: 4px;
@@ -13,4 +37,8 @@
     &::-webkit-scrollbar-thumb:hover {
         width: 6px;
     }
+}
+
+.album-desc {
+    font-size: 1.4rem;
 }

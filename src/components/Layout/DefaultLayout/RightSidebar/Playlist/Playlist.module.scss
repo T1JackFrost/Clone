@@ -1,5 +1,5 @@
 .queue {
-    max-height: 640px;
+    height: calc(100vh - var(--header-height) - var(--playbar-height));
     overflow-y: scroll;
     &::-webkit-scrollbar {
         width: 6px;

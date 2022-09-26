@@ -22,15 +22,6 @@
     overflow-x: hidden;
     overflow-y: scroll;
     height: calc(100vh - var(--header-height) - var(--playbar-height));
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
-    &::-webkit-scrollbar-track {
-        background: var(--playbar-bg);
-    }
-    &::-webkit-scrollbar-thumb {
-        background: var(--scroll-thumb-bg);
-    }
 }
 
 .right-content {

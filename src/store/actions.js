@@ -6,6 +6,7 @@ import {
     SET_VOLUME,
     SET_LOOP,
     SET_ALBUM,
+    UPDATE_HISTORY,
 } from './constants';
 
 export const setSrcAudio = (payload) => ({
@@ -40,5 +41,10 @@ export const setLoop = (payload) => ({
 
 export const setAlbum = (payload) => ({
     type: SET_ALBUM,
+    payload,
+});
+
+export const updateHistory = (payload) => ({
+    type: UPDATE_HISTORY,
     payload,
 });

@@ -5,3 +5,4 @@ export const SET_PLAY_SONG = 'set_play_song';
 export const SET_VOLUME = 'set_volume';
 export const SET_LOOP = 'set_loop';
 export const SET_ALBUM = 'set_album';
+export const UPDATE_HISTORY = 'update_history';

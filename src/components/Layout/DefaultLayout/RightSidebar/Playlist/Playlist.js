@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import SongItem from '~/components/Layout/components/SongItem';
 import styles from './Playlist.module.scss';
 
-import { useStore } from '~/store';
+import { useStore, actions } from '~/store';
 
 const cx = classNames.bind(styles);
 
@@ -12,9 +12,27 @@ function Playlist() {
     const albumSong = album?.song?.items;
 
     return (
-        <div className={cx('queue')}>
+        <div className={cx('queue') + ' scroll'}>
             {albumSong?.map((song) => (
-                <SongItem key={song.encodeId} data={song} />
+                <SongItem
+                    key={song.encodeId}
+                    data={song}
+                    onClick={() => {
+                        dispatch(
+                            actions.setSongInfo({
+                                title: song.title,
+                                artistsNames: song.artistsNames,
+                                thumbnailM: song.thumbnailM,
+                            }),
+                        );
+                        dispatch(
+                            actions.setSongSelect({
+                                songId: song.encodeId,
+                                duration: song.duration,
+                            }),
+                        );
+                    }}
+                />
             ))}
         </div>
     );

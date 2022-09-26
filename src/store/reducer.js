@@ -6,6 +6,7 @@ import {
     SET_VOLUME,
     SET_LOOP,
     SET_ALBUM,
+    UPDATE_HISTORY,
 } from './constants';
 
 const initState = {
@@ -25,6 +26,7 @@ const initState = {
     isRandom: false,
     autoPlay: false,
     album: {},
+    history: JSON.parse(localStorage.getItem('history')) || [],
 };
 
 function reducer(state, action) {
@@ -34,19 +36,23 @@ function reducer(state, action) {
                 ...state,
                 srcAudio: action.payload,
             };
-        case SET_SONG_INFO:
+        case SET_SONG_INFO: {
+            const { title, artistsNames, thumbnailM } = action.payload;
             return {
                 ...state,
-                title: action.payload.title,
-                artistsNames: action.payload.artistsNames,
-                thumbnailM: action.payload.thumbnailM,
+                title,
+                artistsNames,
+                thumbnailM,
             };
-        case SET_SONG_SELECT:
+        }
+        case SET_SONG_SELECT: {
+            const { songId, duration } = action.payload;
             return {
                 ...state,
-                songId: action.payload.songId,
-                duration: action.payload.duration,
+                songId,
+                duration,
             };
+        }
         case SET_PLAY_SONG:
             return {
                 ...state,
@@ -67,6 +73,26 @@ function reducer(state, action) {
                 ...state,
                 album: action.payload,
             };
+        case UPDATE_HISTORY: {
+            const { songId, title, artistsNames, srcAudio, thumbnailM, duration } = action.payload;
+            const checkId = state.history.filter((data) => {
+                return data.songId !== songId;
+            });
+
+            if (checkId.length > 10) {
+                checkId.pop();
+                checkId.unshift(action.payload);
+            } else {
+                checkId.unshift(action.payload);
+            }
+
+            localStorage.setItem('history', JSON.stringify(checkId));
+
+            return {
+                ...state,
+                history: checkId,
+            };
+        }
         default:
             throw new Error('Invalid action');
     }

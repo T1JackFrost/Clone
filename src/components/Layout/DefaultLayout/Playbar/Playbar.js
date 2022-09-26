@@ -34,7 +34,11 @@ function Playbar() {
         }
 
         request.get(`/song?id=${songId}`).then((res) => {
-            dispatch(actions.setSrcAudio(res.data['128']));
+            if (res?.data) {
+                dispatch(actions.setSrcAudio(res.data?.['128']));
+                dispatch(actions.setPlaySong(true));
+                audioRef.current.play();
+            }
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [songId]);

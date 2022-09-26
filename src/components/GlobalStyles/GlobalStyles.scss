@@ -49,3 +49,15 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+
+.scroll {
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-track {
+        background: var(--playbar-bg);
+    }
+    &::-webkit-scrollbar-thumb {
+        background: var(--scroll-thumb-bg);
+    }
+}

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './RightSidebar.module.scss';
-import SongItem from '~/components/Layout/components/SongItem';
 import Playlist from './Playlist';
 import History from './History';
 

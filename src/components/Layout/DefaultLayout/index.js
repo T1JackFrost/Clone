@@ -15,7 +15,7 @@ function DefaultLayout({ children }) {
                 <div className={cx('left-content')}>
                     <LeftSidebar />
                 </div>
-                <div className={cx('content')}>
+                <div className={cx('content') + ' scroll'}>
                     <Header />
                     <div className={cx('page')}>{children}</div>
                 </div>

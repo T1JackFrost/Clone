@@ -7,6 +7,17 @@
     height: 300px;
 }
 
+.cd-isplaying {
+    border-radius: 999px;
+    animation: cdRotate 10s linear infinite;
+}
+
+@keyframes cdRotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 .cd-title {
     font-size: 2rem;
     text-align: center;
@@ -25,20 +36,21 @@
     width: 500px;
     height: 535px;
     overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 4px;
-    }
-    &::-webkit-scrollbar-track {
-        background-color: var(--playbar-bg);
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: var(--scroll-thumb-bg);
-    }
-    &::-webkit-scrollbar-thumb:hover {
-        width: 6px;
-    }
 }
 
 .album-desc {
     font-size: 1.4rem;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.song-item {
+    display: flex;
+    align-items: center;
+}
+
+.song-icon {
+    margin-right: 4px;
+    opacity: 0.8;
 }

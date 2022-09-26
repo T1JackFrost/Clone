@@ -5,7 +5,7 @@
 .item-thumb {
     position: relative;
     overflow: hidden;
-    overflow-y: hidden;
+    // overflow-y: hidden;
     &:hover {
         .item-action {
             display: flex;

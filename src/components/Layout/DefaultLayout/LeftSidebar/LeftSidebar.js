@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './LeftSidebar.module.scss';
 import images from '~/assets/images';
@@ -12,9 +13,9 @@ const cx = classNames.bind(styles);
 function LeftSidebar() {
     return (
         <aside className={cx('wrapper')}>
-            <div className={cx('logo')}>
+            <Link to="/" className={cx('logo')}>
                 <img src={images.logo} alt="Zingmp3 logo" className={cx('logo-img')} />
-            </div>
+            </Link>
             <div className={cx('menu')}>
                 <Menu>
                     <MenuItem icon={<FontAwesomeIcon icon={faCompactDisc} />} title="Khám phá" to={'/'} />

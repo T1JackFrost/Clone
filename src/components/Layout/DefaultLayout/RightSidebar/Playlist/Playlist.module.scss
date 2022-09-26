@@ -1,13 +1,5 @@
 .queue {
     height: calc(100vh - var(--header-height) - var(--playbar-height));
+    width: 100%;
     overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 6px;
-    }
-    &::-webkit-scrollbar-track {
-        background: var(--playbar-bg);
-    }
-    &::-webkit-scrollbar-thumb {
-        background: var(--scroll-thumb-bg);
-    }
 }

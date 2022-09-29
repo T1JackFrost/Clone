@@ -4,11 +4,16 @@ import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
 import styles from './SongItem.module.scss';
 
+import { useStore } from '~/store';
+
 const cx = classNames.bind(styles);
 
 function SongItem({ data, onClick }) {
+    const [state, dispatch] = useStore();
+    const { songId } = state;
+
     return (
-        <div className={cx('song-item')} onClick={onClick}>
+        <div className={cx('song-item', songId === data?.encodeId && 'song-item-active')} onClick={onClick}>
             <div className={cx('song-thumb')}>
                 <div className={cx('song-action')}>
                     <FontAwesomeIcon icon={faPlay} />

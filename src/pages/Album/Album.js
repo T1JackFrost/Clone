@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Album.module.scss';
 import request from '~/ultis/request';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import SongItem from '~/components/Layout/components/SongItem';
 import { useStore, actions } from '~/store';
@@ -13,9 +13,7 @@ const cx = classNames.bind(styles);
 
 function Album() {
     const [state, dispatch] = useStore();
-    const { album, isPlay } = state;
-
-    const albumResult = album?.song?.items;
+    const { album, isPlay, albumSong } = state;
 
     const { albumId } = useParams();
 
@@ -42,9 +40,9 @@ function Album() {
                 <p className={cx('like')}>{`${album.like} người yêu thích`}</p>
             </div>
             <div className={cx('album')}>
+                <h3 className={cx('album-desc')}>Lời tựa {album?.sortDescription}</h3>
                 <div className={cx('song-list') + ' scroll'}>
-                    <h3 className={cx('album-desc')}>Lời tựa {album?.sortDescription}</h3>
-                    {albumResult?.map((song) => (
+                    {albumSong?.map((song) => (
                         <div key={song.encodeId} className={cx('song-item')}>
                             <FontAwesomeIcon icon={faMusic} className={cx('song-icon')} />
                             <SongItem

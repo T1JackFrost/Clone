@@ -7,6 +7,7 @@ import {
     SET_LOOP,
     SET_ALBUM,
     UPDATE_HISTORY,
+    SET_RANDOM,
 } from './constants';
 
 const initState = {
@@ -14,8 +15,6 @@ const initState = {
     isMute: false,
     songId: '',
     playlistId: '',
-    currentIndexSong: 0,
-    currentIndexSongRandom: 0,
     title: '',
     artistsNames: '',
     thumbnailM: '',
@@ -26,6 +25,7 @@ const initState = {
     isRandom: false,
     autoPlay: false,
     album: {},
+    albumSong: [],
     history: JSON.parse(localStorage.getItem('history')) || [],
 };
 
@@ -72,14 +72,15 @@ function reducer(state, action) {
             return {
                 ...state,
                 album: action.payload,
+                albumSong: action.payload?.song?.items?.filter((item) => item.streamingStatus === 1),
             };
         case UPDATE_HISTORY: {
-            const { songId, title, artistsNames, srcAudio, thumbnailM, duration } = action.payload;
+            const { songId } = action.payload;
             const checkId = state.history.filter((data) => {
                 return data.songId !== songId;
             });
 
-            if (checkId.length > 10) {
+            if (checkId.length >= 10) {
                 checkId.pop();
                 checkId.unshift(action.payload);
             } else {
@@ -93,6 +94,11 @@ function reducer(state, action) {
                 history: checkId,
             };
         }
+        case SET_RANDOM:
+            return {
+                ...state,
+                isRandom: action.payload,
+            };
         default:
             throw new Error('Invalid action');
     }

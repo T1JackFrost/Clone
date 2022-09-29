@@ -6,3 +6,4 @@ export const SET_VOLUME = 'set_volume';
 export const SET_LOOP = 'set_loop';
 export const SET_ALBUM = 'set_album';
 export const UPDATE_HISTORY = 'update_history';
+export const SET_RANDOM = 'set-random';

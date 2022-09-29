@@ -31,7 +31,7 @@ function Search() {
         }
 
         request.get(`/search?keyword=${encodeURIComponent(debounced)}`).then((res) => {
-            setSearchResult(res.data.songs);
+            setSearchResult(res?.data?.songs);
         });
     }, [debounced]);
 
@@ -43,12 +43,12 @@ function Search() {
         <div className={cx('wrapper')}>
             <Tippy
                 interactive
-                visible={showResult && searchResult.length > 0}
+                visible={showResult && searchResult?.length > 0}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                         <SearchResult>
                             <h4>Gợi ý kết quả</h4>
-                            {searchResult.map((result) => (
+                            {searchResult?.map((result) => (
                                 <SearchResultItem
                                     key={result.encodeId}
                                     data={result}

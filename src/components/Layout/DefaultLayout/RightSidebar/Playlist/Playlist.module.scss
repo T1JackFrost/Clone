@@ -3,3 +3,8 @@
     width: 100%;
     overflow-y: scroll;
 }
+
+.listening {
+    border-bottom: 3px solid var(--alpha-background);
+    pointer-events: none;
+}

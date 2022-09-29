@@ -1,0 +1,19 @@
+.wrapper {
+    width: 500px;
+    display: flex;
+    align-items: center;
+    flex: 1 1;
+
+    input[type='range'] {
+        height: 4px;
+        width: 100%;
+        cursor: pointer;
+    }
+}
+
+.time {
+    min-width: 40px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}

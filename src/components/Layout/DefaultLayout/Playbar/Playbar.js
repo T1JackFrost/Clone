@@ -19,16 +19,26 @@ import styles from './Playbar.module.scss';
 import request from '~/ultis/request';
 
 import { useStore, actions } from '~/store';
+import ProgressBar from './ProgressBar';
 
 const cx = classNames.bind(styles);
 
 function Playbar() {
     const [state, dispatch] = useStore();
-    const { songId, title, artistsNames, thumbnailM, isPlay, srcAudio, duration, volume, isLoop } = state;
+    const { songId, title, artistsNames, thumbnailM, isPlay, srcAudio, duration, volume, isLoop, isRandom, albumSong } =
+        state;
 
     const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
+        if (srcAudio) {
+            audioRef.current.play();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [srcAudio]);
+
+    useEffect(() => {
+        dispatch(actions.setPlaySong(false));
         if (!songId) {
             return;
         }
@@ -36,6 +46,7 @@ function Playbar() {
         request.get(`/song?id=${songId}`).then((res) => {
             if (res?.data) {
                 dispatch(actions.setSrcAudio(res.data?.['128']));
+                dispatch(actions.updateHistory({ songId, title, artistsNames, srcAudio, thumbnailM, duration }));
                 dispatch(actions.setPlaySong(true));
                 audioRef.current.play();
             }
@@ -72,6 +83,78 @@ function Playbar() {
         dispatch(actions.setLoop(!isLoop));
     };
 
+    const handleLoadSong = (song) => {
+        dispatch(
+            actions.setSongInfo({
+                title: song?.title,
+                artistsNames: song?.artistsNames,
+                thumbnailM: song?.thumbnailM,
+            }),
+        );
+        dispatch(
+            actions.setSongSelect({
+                songId: song?.encodeId,
+                duration: song?.duration,
+            }),
+        );
+    };
+
+    const getCurrentSong = () => {
+        const songIndex = albumSong.findIndex((song) => song.encodeId === songId);
+        return {
+            encodeId: songId,
+            songIndex: songIndex,
+            duration: duration,
+            title: title,
+            artistsNames: artistsNames,
+            thumbnailM: thumbnailM,
+        };
+    };
+
+    const handleRandom = () => {
+        if (albumSong.length >= 2) {
+            let newSong;
+            do {
+                newSong = albumSong[Math.floor(Math.random() * albumSong.length)];
+            } while (newSong.encodeId === songId);
+            handleLoadSong(newSong);
+        }
+    };
+
+    const handleNextSong = () => {
+        if (isRandom) {
+            handleRandom();
+        } else {
+            const song = getCurrentSong();
+            let nextSongIndex = song.songIndex + 1;
+            if (nextSongIndex >= albumSong.length) {
+                nextSongIndex = 0;
+            }
+            const nextSong = albumSong[nextSongIndex];
+            handleLoadSong(nextSong);
+        }
+    };
+
+    const handlePrevSong = () => {
+        if (isRandom) {
+            handleRandom();
+        } else {
+            const song = getCurrentSong();
+            let prevSongIndex = song.songIndex - 1;
+            if (prevSongIndex < 0) {
+                prevSongIndex = albumSong.length - 1;
+            }
+            const prevSong = albumSong[prevSongIndex];
+            handleLoadSong(prevSong);
+        }
+    };
+
+    const handleOnEnd = () => {
+        if (!isLoop) {
+            handleNextSong();
+        }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('player-info')}>
@@ -83,48 +166,34 @@ function Playbar() {
             </div>
             <div className={cx('player-control')}>
                 <div className={cx('handler')}>
-                    <Button className={cx('random-btn')} type="circle">
+                    <Button
+                        className={cx('random-btn', isRandom && 'btn-active')}
+                        type="circle"
+                        onClick={() => {
+                            dispatch(actions.setRandom(!isRandom));
+                        }}
+                    >
                         <FontAwesomeIcon icon={faShuffle} />
                     </Button>
-                    <Button className={cx('backward-btn')} type="circle">
+                    <Button className={cx('backward-btn')} type="circle" onClick={handlePrevSong}>
                         <FontAwesomeIcon icon={faBackwardStep} />
                     </Button>
                     <Button className={cx('play-btn')} type="circle" onClick={handlePlaySong}>
                         {isPlay ? <FontAwesomeIcon icon={faPauseCircle} /> : <FontAwesomeIcon icon={faPlayCircle} />}
                     </Button>
-                    <Button className={cx('forward-btn')} type="circle">
+                    <Button className={cx('forward-btn')} type="circle" onClick={handleNextSong}>
                         <FontAwesomeIcon icon={faForwardStep} />
                     </Button>
-                    <Button className={cx('loop-btn', isLoop && 'loop-btn-active')} type="circle" onClick={handleLoop}>
+                    <Button className={cx('loop-btn', isLoop && 'btn-active')} type="circle" onClick={handleLoop}>
                         <FontAwesomeIcon icon={faRepeat} className={cx('loop-icon')} />
                     </Button>
                 </div>
-                <div className={cx('song-range')}>
-                    {duration ? (
-                        <span className={cx('time')}>
-                            {'0' + Math.floor(currentTime / 60)}:
-                            {currentTime % 60 < 10 ? '0' + Math.floor(currentTime % 60) : Math.floor(currentTime % 60)}
-                        </span>
-                    ) : (
-                        ''
-                    )}
-                    <input
-                        type="range"
-                        min="0"
-                        max={duration}
-                        value={currentTime}
-                        ref={rangeRef}
-                        onInput={(e) => handleChangeProgress(e)}
-                    />
-                    {duration ? (
-                        <span className={cx('time')}>
-                            {'0' + Math.floor(duration / 60)}:
-                            {duration % 60 < 10 ? '0' + Math.floor(duration % 60) : Math.floor(duration % 60)}
-                        </span>
-                    ) : (
-                        ''
-                    )}
-                </div>
+                <ProgressBar
+                    currentTime={currentTime}
+                    rangeRef={rangeRef}
+                    onInput={(e) => handleChangeProgress(e)}
+                    duration={duration}
+                />
             </div>
             <div className={cx('player-option')}>
                 <div className={cx('volume')}>
@@ -145,6 +214,7 @@ function Playbar() {
                 src={srcAudio}
                 onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)}
                 loop={isLoop}
+                onEnded={handleOnEnd}
             />
         </div>
     );

@@ -20,6 +20,7 @@ function LeftSidebar() {
                 <Menu>
                     <MenuItem icon={<FontAwesomeIcon icon={faCompactDisc} />} title="Khám phá" to={'/'} />
                     <MenuItem icon={<FontAwesomeIcon icon={faChartSimple} />} title="Bảng xếp hạng" to={'/rankings'} />
+                    <div className={cx('divide-line')}></div>
                     <MenuItem icon={<FontAwesomeIcon icon={faMusic} />} title="Nhạc mới" to={'/newsongs'} />
                     <MenuItem icon={<FontAwesomeIcon icon={faIcons} />} title="Thể loại" to={'/category'} />
                     <MenuItem icon={<FontAwesomeIcon icon={faStar} />} title="Top 100" to={'/top100'} />

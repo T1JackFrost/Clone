@@ -52,38 +52,19 @@
 }
 
 .handler {
-    margin-bottom: 8px;
-}
-
-.song-range {
-    width: 500px;
-    display: flex;
-    flex: 1;
-    align-items: center;
-
-    input[type='range'] {
-        height: 4px;
-        width: 100%;
-        cursor: pointer;
-    }
-}
-
-.time {
-    min-width: 60px;
-    text-align: center;
-    font-size: 1.4rem;
-    color: var(--text-color);
+    margin-bottom: 4px;
 }
 
 .player-option {
     display: flex;
     flex: 1 1;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .volume {
     display: flex;
     align-items: center;
+    width: 50%;
 }
 
 .volume-range {
@@ -99,6 +80,6 @@
     font-size: 28px;
 }
 
-.loop-btn-active {
+.btn-active {
     color: var(--primary);
 }

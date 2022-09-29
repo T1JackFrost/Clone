@@ -7,6 +7,8 @@ import {
     SET_LOOP,
     SET_ALBUM,
     UPDATE_HISTORY,
+    SET_RANDOM,
+    SET_ACTIVE_ELEMENT,
 } from './constants';
 
 export const setSrcAudio = (payload) => ({
@@ -46,5 +48,10 @@ export const setAlbum = (payload) => ({
 
 export const updateHistory = (payload) => ({
     type: UPDATE_HISTORY,
+    payload,
+});
+
+export const setRandom = (payload) => ({
+    type: SET_RANDOM,
     payload,
 });

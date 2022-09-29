@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     padding: 8px;
-    background-color: var(--primary);
+    background-color: transparent;
     border-radius: 8px;
     margin: 4px 0;
     &:hover {
@@ -13,6 +13,11 @@
         }
     }
     width: 100%;
+}
+
+.song-item-active {
+    background-color: var(--primary);
+    pointer-events: none;
 }
 
 .song-thumb {
@@ -42,6 +47,10 @@
 .title {
     font-size: 1.4rem;
     font-weight: 500;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
 }
 
 .artist {

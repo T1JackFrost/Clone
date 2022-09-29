@@ -9,16 +9,33 @@ const cx = classNames.bind(styles);
 
 function History() {
     const [state, dispatch] = useStore();
+    const { history } = state;
 
-    const { isPlay, songId, title, artistsNames, srcAudio, thumbnailM, duration } = state;
-
-    const data = { songId, title, artistsNames, srcAudio, thumbnailM, duration };
-
-    // localStorage.setItem(songId, JSON.stringify(data));
-
-    // const dataLocal = JSON.parse(localStorage.getItem(songId));
-
-    return <div className={cx('queue') + ' scroll'}></div>;
+    return (
+        <div className={cx('queue') + ' scroll'}>
+            {history?.map((song) => (
+                <SongItem
+                    key={song.songId}
+                    data={song}
+                    onClick={() => {
+                        dispatch(
+                            actions.setSongInfo({
+                                title: song.title,
+                                artistsNames: song.artistsNames,
+                                thumbnailM: song.thumbnailM,
+                            }),
+                        );
+                        dispatch(
+                            actions.setSongSelect({
+                                songId: song.songId,
+                                duration: song.duration,
+                            }),
+                        );
+                    }}
+                />
+            ))}
+        </div>
+    );
 }
 
 export default History;

@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import classNames from 'classnames/bind';
 import SongItem from '~/components/Layout/components/SongItem';
 import styles from './History.module.scss';
@@ -17,6 +16,7 @@ function History() {
                 <SongItem
                     key={song.songId}
                     data={song}
+                    hideAlbum={true}
                     onClick={() => {
                         dispatch(
                             actions.setSongInfo({

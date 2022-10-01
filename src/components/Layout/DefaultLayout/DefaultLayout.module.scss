@@ -32,10 +32,10 @@
     background-color: var(--layout);
     width: var(--width-right-sidebar);
     border-left: 1px solid var(--alpha-background);
-    margin-bottom: 100px;
+    margin-bottom: var(--playbar-height);
 }
 
 .page {
     background-color: transparent;
-    margin-bottom: 100px;
+    margin-bottom: var(--playbar-height);
 }

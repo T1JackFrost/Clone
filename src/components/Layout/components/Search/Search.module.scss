@@ -1,10 +1,12 @@
 .wrapper {
     --search-border-radius: 20px;
+    width: 100%;
+    max-width: 540px;
 }
 
 .search,
 .search-result {
-    width: 540px;
+    width: 100%;
 }
 
 .search-title {

@@ -4,7 +4,8 @@
     padding: 8px;
     background-color: transparent;
     border-radius: 8px;
-    margin: 4px 0;
+    margin-top: 4px;
+    margin-bottom: 4px;
     &:hover {
         opacity: 0.8;
         cursor: pointer;
@@ -15,9 +16,21 @@
     width: 100%;
 }
 
+.song-info {
+    display: flex;
+    width: 60%;
+    font-size: 1.4rem;
+    align-items: center;
+}
+
+.song-icon {
+    margin-right: 8px;
+    font-size: 16px;
+    opacity: 0.8;
+}
+
 .song-item-active {
     background-color: var(--primary);
-    pointer-events: none;
 }
 
 .song-thumb {
@@ -57,7 +70,33 @@
     font-size: 1.2rem;
 }
 
+.album {
+    width: 20%;
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.2rem;
+}
+
+.album-title {
+    font-size: 1.4rem;
+    &:hover {
+        text-decoration: underline;
+        color: yellow;
+    }
+}
+
+.album-hide {
+    display: none;
+}
+
 .time {
+    display: flex;
+    width: 8%;
     font-size: 1.2rem;
     margin-left: auto;
+}
+
+.song-disabled {
+    pointer-events: none;
+    width: 99%;
 }

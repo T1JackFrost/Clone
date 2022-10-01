@@ -4,6 +4,7 @@ import styles from './Playlist.module.scss';
 
 import { useStore, actions } from '~/store';
 import Listening from './Listening';
+import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -12,12 +13,13 @@ function Playlist() {
     const { albumSong, isPlay } = state;
 
     return (
-        <div className={cx('queue') + ' scroll'}>
+        <div className={`${cx('queue') + ' scroll'} playlist`}>
             {isPlay && <Listening className={cx('listening')} />}
             {albumSong?.map((song) => (
                 <SongItem
                     key={song.encodeId}
                     data={song}
+                    hideAlbum={true}
                     onClick={() => {
                         dispatch(
                             actions.setSongInfo({

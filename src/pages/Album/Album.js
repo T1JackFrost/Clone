@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './Album.module.scss';
 import request from '~/ultis/request';
-import { faMusic } from '@fortawesome/free-solid-svg-icons';
 import SongItem from '~/components/Layout/components/SongItem';
 import { useStore, actions } from '~/store';
 import Loading from '~/components/Layout/components/Loading';
+import ContentTitle from '~/components/Layout/components/SongItem/ContentTitle';
 
 const cx = classNames.bind(styles);
 
@@ -41,10 +40,10 @@ function Album() {
             </div>
             <div className={cx('album')}>
                 <h3 className={cx('album-desc')}>Lời tựa {album?.sortDescription}</h3>
+                <ContentTitle />
                 <div className={cx('song-list') + ' scroll'}>
                     {albumSong?.map((song) => (
                         <div key={song.encodeId} className={cx('song-item')}>
-                            <FontAwesomeIcon icon={faMusic} className={cx('song-icon')} />
                             <SongItem
                                 data={song}
                                 onClick={() => {

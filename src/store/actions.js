@@ -8,7 +8,6 @@ import {
     SET_ALBUM,
     UPDATE_HISTORY,
     SET_RANDOM,
-    SET_ACTIVE_ELEMENT,
 } from './constants';
 
 export const setSrcAudio = (payload) => ({

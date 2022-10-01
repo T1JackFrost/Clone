@@ -9,7 +9,7 @@ function Listening({ className }) {
 
     return (
         <div className={className}>
-            <SongItem data={songListening} />
+            <SongItem data={songListening} hideAlbum={true} />
         </div>
     );
 }

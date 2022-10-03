@@ -6,7 +6,7 @@ import request from '~/ultis/request';
 import SongItem from '~/components/Layout/components/SongItem';
 import { useStore, actions } from '~/store';
 import Loading from '~/components/Layout/components/Loading';
-import ContentTitle from '~/components/Layout/components/SongItem/ContentTitle';
+import ContentTitle from '~/components/ContentTitle';
 
 const cx = classNames.bind(styles);
 

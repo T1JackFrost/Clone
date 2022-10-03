@@ -4,7 +4,6 @@ import styles from './Playlist.module.scss';
 
 import { useStore, actions } from '~/store';
 import Listening from './Listening';
-import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 

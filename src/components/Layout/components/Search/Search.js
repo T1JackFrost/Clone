@@ -43,6 +43,7 @@ function Search() {
         <div className={cx('wrapper')}>
             <Tippy
                 interactive
+                style={{ width: '100%' }}
                 visible={showResult && searchResult?.length > 0}
                 render={(attrs) => (
                     <div className={cx('search-result')} tabIndex="-1" {...attrs}>

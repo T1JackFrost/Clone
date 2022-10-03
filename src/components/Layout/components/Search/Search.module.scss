@@ -2,6 +2,7 @@
     --search-border-radius: 20px;
     width: 100%;
     max-width: 540px;
+    position: relative;
 }
 
 .search,
@@ -22,8 +23,6 @@
     background-color: var(--layout);
     border-radius: var(--search-border-radius);
     overflow: hidden;
-    position: relative;
-
     input {
         height: 100%;
         width: 85%;
